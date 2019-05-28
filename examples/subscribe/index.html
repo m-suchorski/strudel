@@ -1,0 +1,29 @@
+<body>
+  <p>Scroll & Resize</p>
+  <div class="scrollable-elem">Elem</div>
+
+  <style>
+    body {
+      height: 3000px;
+    }
+  </style>
+
+  <script src="../../dist/strudel.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.24.0/babel.min.js"></script>
+  <script type="text/babel" data-plugins="transform-decorators-legacy">
+    @Strudel.Component('.scrollable-elem') 
+    class Scrollable {
+      @Strudel.Subscribe('scroll')
+      scrollHandler() {
+        console.log('scroll');
+      }
+
+      @Strudel.Subscribe('resize') 
+      resizeHandler() {
+        console.log('resize');
+      }
+    }
+
+    Strudel.element(document).trigger('content:loaded');
+  </script>
+</body>
